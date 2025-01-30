@@ -70,18 +70,24 @@
     
 
 </body>
+
 <!-- Footer with Back Button -->
 <footer class="w-full bg-gray-800 text-white py-4 absolute bottom-0">
     <div class="container mx-auto text-center">
-        <button onclick="history.back()" class="bg-black text-white py-3 px-6 rounded-lg flex items-center justify-center mx-auto hover:bg-gray-700 transition duration-200">
+        <button id="backBtn" class="bg-black text-white py-3 px-6 rounded-lg flex items-center justify-center mx-auto hover:bg-gray-700 transition duration-200">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6 mr-2">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
             </svg>
-            <a href="productivity2.html">Back</a>
+            Back
         </button>
-            
-       
     </div>
 </footer>
+
+<script>
+    document.getElementById("backBtn").addEventListener("click", function() {
+        window.location.href = "productivity2.html";  
+    });
+</script>
+
 
 </html>
