@@ -68,21 +68,29 @@
         </button>
 
     </div>
-    <script>
-       document.getElementById("save-btn").addEventListener("click", function () {
-       let task = document.getElementById("task-name").value;
-       let priority = document.getElementById("priority").value;
+    
+       <script>
+    document.getElementById("save-btn").addEventListener("click", function () {
+        let task = document.getElementById("task-name").value;
+        let priority = document.getElementById("priority").value;
 
-    if (!task || priority === "Choose Priority") {
-        alert("Please fill in all fields!");
-        return;
-    }
+        if (!task || priority === "Choose Priority") {
+            alert("Please fill in all fields!");
+            return;
+        }
 
-    let taskData = { task, priority };
-    localStorage.setItem("task", JSON.stringify(taskData));
-    alert("Task saved!");
-});
-        </script>
+        let taskData = { task, priority };
+        localStorage.setItem("task", JSON.stringify(taskData));
+
+        // Optionally clear the form inputs after saving
+        document.getElementById("task-name").value = '';
+        document.getElementById("priority").value = 'Choose Priority';
+
+        alert("Task saved!");
+    });
+</script>
+
+        
         
     
 
