@@ -18,7 +18,55 @@
         </div>
     </div>
 
+    <script>
+        const startbt = document.getElementById("start");
+        const pausebt = document.getElementById("pause");
+        const resetbt = document.getElementById("reset");
+        const timerbt = document.getElementById("timer");
     
+        let interval;
+        let sparTime = 1500; // 25 minutes (in seconds)
+    
+        function updatetimer() {
+            let minutes = Math.floor(sparTime / 60);
+            let seconds = sparTime % 60;
+            
+            
+            seconds = seconds < 10 ? "0" + seconds : seconds;
+    
+            timerbt.innerHTML = minutes + ":" + seconds;
+        }
+    
+        function startCounting() {
+            if (!interval) { 
+                interval = setInterval(() => {
+                    if (sparTime > 0) {
+                        sparTime--;
+                        updatetimer();
+                    } else {
+                        clearInterval(interval);
+                        interval = null; }  }, 1000);
+            }
+        }
+    
+        function pauseCounting() {
+            clearInterval(interval);
+            interval = null; 
+        }
+    
+        function resetCounting() {
+            clearInterval(interval);
+            interval = null;
+            sparTime = 1500; 
+            updatetimer();
+        }
+    
+        startbt.addEventListener("click", startCounting);
+        pausebt.addEventListener("click", pauseCounting);
+        resetbt.addEventListener("click", resetCounting);
+    
+        updatetimer(); 
+    </script>
     
 
 </body>
