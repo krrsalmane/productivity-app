@@ -5,9 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Timer</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    
+   
 </head>
 <body class="bg-gray-100 flex flex-col items-center justify-center h-screen m-0 p-0">
+
 
     <div class="bg-white p-16 rounded-lg shadow-lg text-center w-full h-full flex flex-col justify-center items-center">
         <div class="text-8xl font-bold mb-8" id="timer">00:25:00</div>
@@ -18,27 +19,28 @@
         </div>
     </div>
 
+
     <script>
         const startbt = document.getElementById("start");
         const pausebt = document.getElementById("pause");
         const resetbt = document.getElementById("reset");
         const timerbt = document.getElementById("timer");
-    
+   
         let interval;
         let sparTime = 1500; // 25 minutes (in seconds)
-    
+   
         function updatetimer() {
             let minutes = Math.floor(sparTime / 60);
             let seconds = sparTime % 60;
-            
-            
+           
+           
             seconds = seconds < 10 ? "0" + seconds : seconds;
-    
+   
             timerbt.innerHTML = minutes + ":" + seconds;
         }
-    
+   
         function startCounting() {
-            if (!interval) { 
+            if (!interval) {
                 interval = setInterval(() => {
                     if (sparTime > 0) {
                         sparTime--;
@@ -48,28 +50,30 @@
                         interval = null; }  }, 1000);
             }
         }
-    
+   
         function pauseCounting() {
             clearInterval(interval);
-            interval = null; 
+            interval = null;
         }
-    
+   
         function resetCounting() {
             clearInterval(interval);
             interval = null;
-            sparTime = 1500; 
+            sparTime = 1500;
             updatetimer();
         }
-    
+   
         startbt.addEventListener("click", startCounting);
         pausebt.addEventListener("click", pauseCounting);
         resetbt.addEventListener("click", resetCounting);
-    
-        updatetimer(); 
+   
+        updatetimer();
     </script>
-    
+   
+
 
 </body>
+
 
 <!-- Footer with Back Button -->
 <footer class="w-full bg-gray-800 text-white py-4 absolute bottom-0">
@@ -83,6 +87,7 @@
     </div>
 </footer>
 
+
 <script>
     document.getElementById("backBtn").addEventListener("click", function() {
         window.location.href = "productivity2.html";  
@@ -90,4 +95,7 @@
 </script>
 
 
+
+
 </html>
+

@@ -5,25 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Task Form</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    
+   
 </head>
 <body class="bg-gray-100 flex items-center justify-center h-screen">
 
+
     <!-- Form Container -->
     <div class="bg-white shadow-lg rounded-lg p-8 min-w-[600px] max-w-4xl w-full h-screen flex flex-col justify-center">
-        
+       
         <!-- Header -->
         <div class="flex items-center justify-center mb-6">
             <button class="text-gray-700 text-2xl px-3 py-2 border rounded-full hover:bg-gray-200">
-                
+               
                 <a href="productivity1.html">&#8592;</a>
             </button>
             <h1 class="text-xl font-bold text-center w-full">Tasks Details</h1>
         </div>
-        
+       
         <!-- Task Title -->
         <label class="block text-lg font-medium text-gray-700">Task Title</label>
         <input id="task-name" type="text" placeholder="task name"  class="w-full mt-1 p-3 border rounded-lg bg-gray-50 focus:ring-2 focus:ring-blue-400">
+
 
         <!-- Priority -->
         <label for="priority" class="block text-lg font-medium text-gray-700 mt-4">Priority</label>
@@ -34,10 +36,11 @@
             <option value="lo">Low</option>
         </select>
 
+
         <!-- Date & Time -->
         <label class="block text-lg font-medium text-gray-700 mt-4">When</label>
         <div class="flex gap-4">
-            
+           
             <!-- Date Input -->
             <div class="relative flex-grow">
                 <input type="date" value="2022-10-22" class="w-full p-3 border rounded-lg bg-gray-50 focus:ring-2 focus:ring-blue-400">
@@ -45,58 +48,69 @@
                     📅
                 </button>
             </div>
-            
+           
             <!-- Time Input -->
-            
+           
             <button class="w-48 h-12 bg-blue-600 text-white text-lg font-medium rounded-md hover:bg-blue-700 transition duration-200">
                 <a href="timer.html" class="w-full h-full flex items-center justify-center">
                     Pomodoro
                 </a>
             </button>
-            
-            
+           
+           
         </div>
+
 
         <!-- Description -->
         <label class="block text-lg font-medium text-gray-700 mt-4">Description</label>
         <textarea placeholder="Add your notes here" class="w-full mt-1 p-3 border rounded-lg bg-gray-50 h-32 focus:ring-2 focus:ring-blue-400"></textarea>
 
+
         <!-- Save Button -->
         <button id="save-btn" class="w-full bg-black text-white text-lg py-3 mt-6 rounded-lg hover:bg-gray-800 transition duration-200">
             Save
-            
+           
         </button>
 
+
     </div>
-    
-       <script>
-    document.getElementById("save-btn").addEventListener("click", function () {
-        let task = document.getElementById("task-name").value;
-        let priority = document.getElementById("priority").value;
+   
+    <script>
+        document.getElementById("save-btn").addEventListener("click", function () {
+            let task = document.getElementById("task-name").value;
+            let priority = document.getElementById("priority").value;
+   
+            if (!task || priority === "Choose Priority") {
+                alert("Please fill in all fields!");
+                return;
+            }
+   
+            let newTask = { task, priority };
+   
+            // Get existing tasks from localStorage (or initialize an empty array)
+            let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+   
+            // Add new task to the array
+            tasks.push(newTask);
+   
+            // Save updated tasks list back to localStorage
+            localStorage.setItem("tasks", JSON.stringify(tasks));
+   
+            // Clear input fields
+            document.getElementById("task-name").value = '';
+            document.getElementById("priority").value = 'Choose Priority';
+   
+            alert("Task saved!");
+        });
+    </script>
+   
 
-        if (!task || priority === "Choose Priority") {
-            alert("Please fill in all fields!");
-            return;
-        }
 
-        let taskData = { task, priority };
-        localStorage.setItem("task", JSON.stringify(taskData));
+       
+       
+   
 
-        // Optionally clear the form inputs after saving
-        document.getElementById("task-name").value = '';
-        document.getElementById("priority").value = 'Choose Priority';
-
-        alert("Task saved!");
-    });
-</script>
-
-        
-        
-    
 
 </body>
 </html>
-
-
-
 
